@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "517336559155",
+    "project_id": "assistantcloudcoomputing",
+    "storage_bucket": "assistantcloudcoomputing.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:517336559155:android:311e2599d07d00d1393d46",
+        "android_client_info": {
+          "package_name": "com.dream.assistantcloudcomputing"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "517336559155-7gvf7fptqn44936tgq619kncek9cuavd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoN0DLKtQCDBgjn1zf7CHLBX56kncWF6o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "517336559155-7gvf7fptqn44936tgq619kncek9cuavd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
