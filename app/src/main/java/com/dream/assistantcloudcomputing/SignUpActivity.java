@@ -25,7 +25,9 @@ public class SignUpActivity extends AppCompatActivity {
         initialise();
         SharedPreferences sharedpreferences = getSharedPreferences("LocalData", Context.MODE_PRIVATE);
         if(sharedpreferences.getBoolean("islogin",false)){
-            startActivity(new Intent(SignUpActivity.this,MainActivity.class));
+            Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
         }
 
         signup.setOnClickListener(new View.OnClickListener() {

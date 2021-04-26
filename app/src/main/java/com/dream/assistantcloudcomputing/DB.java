@@ -16,10 +16,17 @@ import java.util.concurrent.CountDownLatch;
 public class DB {
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     private DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users");
+    private DatabaseReference recordRef = FirebaseDatabase.getInstance().getReference("records");
     public void writeUser(String name, String email, String phone,String pwd) {
         User user = new User(name, email,phone,pwd);
         userRef.child(phone).setValue(user);
     }
+
+    public void writeRecord(String msg,String phone) {
+        recordRef.child(phone).push().setValue(msg);
+    }
+
+
     public void readUser(String phone) {
 
         mDatabase.child("users").child(phone).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {

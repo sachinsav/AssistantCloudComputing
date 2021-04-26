@@ -11,6 +11,8 @@ import android.speech.RecognizerIntent;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,20 +24,41 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     TextView MessageTv;
-    Button startBtn;
-    String text = " ";
+    ImageButton startBtn;
+    Button record,logout;
+    String text = " ",str_phone;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         SharedPreferences sharedpreferences = getSharedPreferences("LocalData", Context.MODE_PRIVATE);
-
+        str_phone = sharedpreferences.getString("phone","000000000");
         startBtn = findViewById(R.id.startbtn);
         MessageTv = findViewById(R.id.msgtv);
+        record = findViewById(R.id.record);
+        logout = findViewById(R.id.logOut);
+
         startBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 docRecord();
+            }
+        });
+        record.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,RecordActivity.class));
+            }
+        });
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.putBoolean("islogin", false);
+                editor.apply();
+                Intent intent = new Intent(MainActivity.this,SignUpActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
             }
         });
     }
@@ -61,8 +84,9 @@ public class MainActivity extends AppCompatActivity {
                     ArrayList<String> res = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     MessageTv.setText(res.get(0));
                     Log.v("List", String.valueOf(res));
-                    text=text+" "+ res.get(0);
+                    text=res.get(0);
                     Log.v("message",text);
+                    new DB().writeRecord(text,str_phone);
 
                 }
                 break;
