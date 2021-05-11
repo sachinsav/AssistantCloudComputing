@@ -16,6 +16,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class RecordActivity extends AppCompatActivity {
@@ -44,6 +46,7 @@ public class RecordActivity extends AppCompatActivity {
                     String record = item.getValue(String.class);
                     itemlist.add(record);
                 }
+                Collections.reverse(itemlist);
                 adapter = new ArrayAdapter<>(RecordActivity.this, android.R.layout.simple_list_item_1,itemlist);
                 l1.setAdapter(adapter);
             }

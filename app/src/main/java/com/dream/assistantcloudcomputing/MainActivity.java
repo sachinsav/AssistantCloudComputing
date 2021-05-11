@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         MessageTv = findViewById(R.id.msgtv);
         record = findViewById(R.id.record);
         logout = findViewById(R.id.logOut);
-
+        Log.d("Firebase: ", String.valueOf(FirebaseDatabase.getInstance().getReference()));
         startBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
